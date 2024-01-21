@@ -9,3 +9,4 @@
 
 # Ignore pickle files due to size
 *.pkl
+67B3_inactives.pkl
