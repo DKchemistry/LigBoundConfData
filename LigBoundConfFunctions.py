@@ -1,5 +1,6 @@
 import requests
 
+
 def get_pfam_data(pdb_id):
     """
     Retrieves Pfam json data for a given PDB ID.
@@ -58,3 +59,44 @@ def add_pfam_identifiers(df):
         df.loc[index, "Pfam_Identifier"] = identifier
 
     return df
+
+
+def load_sdf_to_dataframe(filename, active):
+    """
+    Load molecules from an SDF file into a pandas DataFrame. Properties are loaded as well. Activity status is added by user. The DataFrame is ordered by the columns: Title, Mol, Activity, and then the properties.
+
+    Args:
+        filename (str): The path to the SDF file.
+        active (bool): Flag indicating whether the molecules are active or not.
+
+    Returns:
+        pandas.DataFrame: A DataFrame containing the loaded molecules and their properties.
+    """
+    # Create a molecule supplier
+    mol_supplier = Chem.SDMolSupplier(filename)
+
+    # Load the molecules and their properties into a list
+    molecules = []
+    for mol in mol_supplier:
+        if mol is not None:
+            props = mol.GetPropsAsDict()
+            props["Title"] = mol.GetProp("_Name")
+            props["Mol"] = mol
+            props["Activity"] = 1 if active else 0
+            molecules.append(props)
+
+    # Convert the list into a DataFrame
+    df = pd.DataFrame(molecules)
+
+    # Reorder the DataFrame columns
+    cols = ["Title", "Mol", "Activity"] + [
+        col for col in df.columns if col not in ["Title", "Mol", "Activity"]
+    ]
+    df = df[cols]
+
+    return df
+
+
+# Usage:
+active = load_sdf_to_dataframe("67B3_actives.sdf", active=True)
+inactive = load_sdf_to_dataframe("67B3_inactives.sdf", active=False)

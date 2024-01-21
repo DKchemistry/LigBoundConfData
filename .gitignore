@@ -1,0 +1,10 @@
+# Ignore SDF files 
+*.sdf 
+
+# Ignore HTML files
+*.html 
+
+# Ignore PPTX files 
+*.pptx 
+
+
