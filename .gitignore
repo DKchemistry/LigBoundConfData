@@ -7,4 +7,5 @@
 # Ignore PPTX files 
 *.pptx 
 
-
+# Ignore pickle files due to size
+*.pkl
