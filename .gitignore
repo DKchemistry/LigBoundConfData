@@ -1,5 +1,11 @@
+# Ignore CSV files
+*.csv
+
 # Ignore SDF files 
 *.sdf 
+
+# Ignore MOL2 files 
+*.mol2
 
 # Ignore HTML files
 *.html 
