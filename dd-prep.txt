@@ -1,0 +1,13 @@
+karla 
+/work/LIT-PCBA/dd_prep 
+
+python3 /mnt/data/dk/mayachemtools/bin/RDKitEnumerateStereoisomers.py -i actives.smi -d no -m UnassignedOnly -o actives_enumerated.smi 
+
+python3 /mnt/data/dk/mayachemtools/bin/RDKitEnumerateStereoisomers.py -i inactives.smi -d no -m UnassignedOnly -o inactives_enumerated.smi 
+
+
+
+
+ligprep -ns -i 2 -W i,-ph,7.4,-pht,0.0 -t 1 -HOST localhost:155 -NJOBS 350 -ismi inactives_enumerated.smi -osd inactives_enumerated.sdf
+
+ligprep -ns -i 2 -W i,-ph,7.4,-pht,0.0 -t 1 -HOST localhost:1 -NJOBS 1 -ismi actives_enumerated.smi -osd actives_enumerated.sdf
