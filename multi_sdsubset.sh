@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# File to split
+file=$1
+
 # Total number of entries in the file
-total_entries=531516
+total_entries=$(grep -c '$$$$' "$file")
 
 # Number of parts to split the file into
 parts=10
@@ -24,7 +27,7 @@ do
     echo "Part $((i+1)): $start-$end"
 
     # Run the Schrodinger command in parallel
-    $SCHRODINGER/utilities/structsubset -n $start-$end 67B3_inactives.sdf subset_$((i+1)).sdf &
+    $SCHRODINGER/utilities/structsubset -n $start-$end "$file" subset_$((i+1)).sdf &
 done
 
 # Wait for all background jobs to finish

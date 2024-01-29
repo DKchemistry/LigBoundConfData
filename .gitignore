@@ -1,3 +1,6 @@
+# Old subsets
+/old_subsets/
+
 # Ignore CSV files
 *.csv
 

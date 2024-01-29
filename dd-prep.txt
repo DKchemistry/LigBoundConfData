@@ -1,7 +1,7 @@
 karla 
 /work/LIT-PCBA/dd_prep 
 
-python3 /mnt/data/dk/mayachemtools/bin/RDKitEnumerateStereoisomers.py -i actives.smi -d no -m UnassignedOnly -o actives_enumerated.smi 
+python3 /mnt/data/dk/mayachemtools/bin/RDKitEnumerateStereoisomers.py -i INPUT -d no -m UnassignedOnly -o OUTPUT
 
 python3 /mnt/data/dk/mayachemtools/bin/RDKitEnumerateStereoisomers.py -i inactives.smi -d no -m UnassignedOnly -o inactives_enumerated.smi 
 
